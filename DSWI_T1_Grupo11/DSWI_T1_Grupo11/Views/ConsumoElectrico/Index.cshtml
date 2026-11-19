@@ -1,0 +1,72 @@
+﻿@model DSWI_T1_Grupo11.Models.ConsumoElectrico
+
+@{
+    ViewData["Title"] = "Consumo Eléctrico";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Cálculo de Consumo Eléctrico</h2>
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Facturación de Energía Eléctrica</h4>
+        </div>
+
+        <div class="card-body">
+            <form asp-controller="ConsumoElectrico"
+                  asp-action="Index"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    <label asp-for="KwhConsumidos" class="form-label">
+                        Ingrese los kWh consumidos:
+                    </label>
+
+                    <input asp-for="KwhConsumidos"
+                           type="number"
+                           min="0"
+                           step="any"
+                           class="form-control"
+                           required />
+
+                    <span asp-validation-for="KwhConsumidos"
+                          class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Calcular consumo
+                </button>
+            </form>
+
+            @if (Context.Request.Method == "POST" && ViewData.ModelState.IsValid)
+            {
+                <hr />
+
+                <h4 class="mb-3">Resultado de Facturación</h4>
+
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                        <tr>
+                            <th>Consumo registrado</th>
+                            <td>@Model.KwhConsumidos.ToString("N2") kWh</td>
+                        </tr>
+                        <tr>
+                            <th>Subtotal</th>
+                            <td>$ @Model.Subtotal.ToString("N2")</td>
+                        </tr>
+                        <tr>
+                            <th>Impuesto (@(Model.PorcentajeImpuesto * 100)%)</th>
+                            <td>$ @Model.Impuesto.ToString("N2")</td>
+                        </tr>
+                        <tr class="table-success">
+                            <th>Total a pagar</th>
+                            <th>$ @Model.TotalPagar.ToString("N2")</th>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>

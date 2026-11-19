@@ -1,0 +1,48 @@
+﻿@model DSWI_T1_Grupo11.Models.DescuentoMoto
+
+@{
+    ViewData["Title"] = "Descuento de Moto";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Descuento por Compra de Moto</h2>
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Precio de la Moto: $ @Model.PrecioMoto.ToString("N2")</h4>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-bordered table-striped text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Día de compra</th>
+                        <th>Descuento</th>
+                        <th>Monto descontado</th>
+                        <th>Total a pagar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Martes</td>
+                        <td>12%</td>
+                        <td>$ @Model.DescuentoMartes.ToString("N2")</td>
+                        <td>$ @Model.TotalMartes.ToString("N2")</td>
+                    </tr>
+                    <tr>
+                        <td>Sábado</td>
+                        <td>18%</td>
+                        <td>$ @Model.DescuentoSabado.ToString("N2")</td>
+                        <td>$ @Model.TotalSabado.ToString("N2")</td>
+                    </tr>
+                    <tr>
+                        <td>Feriado</td>
+                        <td>25%</td>
+                        <td>$ @Model.DescuentoFeriado.ToString("N2")</td>
+                        <td>$ @Model.TotalFeriado.ToString("N2")</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
