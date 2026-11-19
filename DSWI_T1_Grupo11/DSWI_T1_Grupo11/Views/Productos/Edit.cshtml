@@ -1,0 +1,32 @@
+@model Producto
+@{
+    ViewData["Title"] = "Editar Producto";
+}
+
+<div class="container mt-4">
+    <h2>Editar Producto</h2>
+
+    <form asp-action="Edit" asp-route-id="@Model.ProductoID" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input asp-for="ProductoID" type="hidden" />
+
+        <div class="mb-3">
+            <label asp-for="Nombre" class="form-label">Nombre del producto</label>
+            <input asp-for="Nombre" type="text" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Categoria" class="form-label">Categoría</label>
+            <input asp-for="Categoria" type="text" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Actualizar
+        </button>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+            Regresar
+        </a>
+    </form>
+</div>

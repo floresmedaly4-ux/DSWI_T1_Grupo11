@@ -1,0 +1,53 @@
+@model Inventario
+@{
+    ViewData["Title"] = "Registrar Inventario";
+}
+
+<div class="container mt-4">
+    <h2>Registrar Nuevo Inventario</h2>
+    <p>Ingrese los datos del producto en inventario.</p>
+
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="FechaIngreso" class="form-label">Fecha de ingreso</label>
+            <input asp-for="FechaIngreso" type="date" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Cantidad" class="form-label">Cantidad</label>
+            <input asp-for="Cantidad" type="number" class="form-control"
+                   placeholder="Ingrese la cantidad">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Ubicacion" class="form-label">Ubicación</label>
+            <input asp-for="Ubicacion" type="text" class="form-control"
+                   placeholder="Ejemplo: Almacén A">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Estado" class="form-label">Estado</label>
+            <select asp-for="Estado" class="form-select">
+                <option value="">Seleccione un estado</option>
+                <option>Disponible</option>
+                <option>Dañado</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ProductoID" class="form-label">Producto ID</label>
+            <select asp-for="ProductoID" asp-items="ViewBag.ProductoID" class="form-select"><option value="">Seleccione un producto</option></select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Guardar
+        </button>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+            Regresar
+        </a>
+    </form>
+</div>
+

@@ -1,3 +1,5 @@
+using DSWI_T1_Grupo11.Repositories;
+using DSWI_T1_Grupo11.Services;
 
 using Microsoft.EntityFrameworkCore;
 using DSWI_T1_Grupo11.Data;
@@ -11,6 +13,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<InventarioContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("ConexionSQL")));
+
+builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
+builder.Services.AddScoped<IProductoService, ProductoService>();
+builder.Services.AddScoped<IInventarioRepository, InventarioRepository>();
+builder.Services.AddScoped<IInventarioService, InventarioService>();
 
 var app = builder.Build();
 
