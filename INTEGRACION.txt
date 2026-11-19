@@ -2,7 +2,7 @@ APORTE DE MEDALY | Pregunta 2 | DSWI_T1_Grupo11
 Este paquete se integra en el proyecto base que contiene la pregunta 1. La carpeta DSWI_T1_Grupo11 corresponde a la que contiene el .csproj. SQL va junto a la solución .slnx.
 
 1. Preparar la base
-Abre SSMS en Windows. En una instalación nueva ejecuta SQL/01_InventarioBD.sql una sola vez. Si ya tienes InventarioBD con las tablas del profesor, empieza con 02_Comprobar.sql. Ejecuta 03_Procedimientos.sql y luego 04_Prueba.sql. Este último llama a los ocho procedimientos y verifica el resultado dentro de una transacción que se revierte. Debe aparecer «Prueba correcta» en Mensajes. La prueba puede consumir números de identidad sin dejar filas.
+Abre SQL/InventarioDB.txt en una ventana de consulta de SSMS y ejecútalo una sola vez para crear InventarioBD. Si la base ya existe con las tablas del profesor, pasa directamente a SQL/Procedimientos.sql. Ejecuta ese archivo sobre la misma instancia.
 
 2. Integrar el código en Visual Studio
 En tu clon del repositorio, actualiza main y crea la rama medaly/base-inventario. Usa los archivos de este paquete en las rutas indicadas. Para los archivos compartidos, integra solo tus cambios.
@@ -26,7 +26,7 @@ ProductosController usa IProductoService. InventarioController usa IInventarioSe
 - Edit (GET) busca por id; Edit (POST) actualiza. En el formulario de edición incluye el campo oculto ProductoID o InventarioID y envía el mismo id en la ruta, por ejemplo <form asp-action="Edit" asp-route-id="@Model.ProductoID" method="post">. Usa los Form Tag Helpers de MVC para generar el token antifalsificación.
 - En Crear/Editar inventario, el selector usa <select asp-for="ProductoID" asp-items="ViewBag.ProductoID"></select>. El contexto respeta los campos opcionales del script del profesor.
 - Si las vistas se llaman Crear/Editar, ajusten nombres, enlaces y formularios para coincidir. En las rutas incluidas son Create/Edit.
-- Después de integrar las vistas, inicia el proyecto y abre /Productos y /Inventario. Crea un producto, edítalo, crea un ingreso de inventario asociado y cambia su cantidad. Vuelve a ejecutar 02_Comprobar.sql para comprobar lo que guardaron las pantallas.
+- Después de integrar las vistas, inicia el proyecto y abre /Productos y /Inventario. Crea un producto, edítalo, crea un ingreso de inventario asociado y cambia su cantidad.
 
 5. GitHub
 En Cambios de Git prepara los archivos de tu aporte y los generados con Scaffold. Integra con tu compañera las acciones si ella ya cambió los controladores. Confirma desde tu cuenta, por ejemplo «Implementa acceso a inventario con EF Core, servicios y procedimientos almacenados». Publica la rama y crea un pull request hacia main. Una vez integrado, revisen el historial y entreguen el enlace del repositorio con acceso para el profesor.
