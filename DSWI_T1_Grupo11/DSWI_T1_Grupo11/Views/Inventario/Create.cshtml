@@ -1,9 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
+@model Inventario
 @{
     ViewData["Title"] = "Registrar Inventario";
 }
@@ -12,27 +7,28 @@
     <h2>Registrar Nuevo Inventario</h2>
     <p>Ingrese los datos del producto en inventario.</p>
 
-    <form>
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div class="mb-3">
-            <label class="form-label">Fecha de ingreso</label>
-            <input type="date" class="form-control">
+            <label asp-for="FechaIngreso" class="form-label">Fecha de ingreso</label>
+            <input asp-for="FechaIngreso" type="date" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Cantidad</label>
-            <input type="number" class="form-control"
+            <label asp-for="Cantidad" class="form-label">Cantidad</label>
+            <input asp-for="Cantidad" type="number" class="form-control"
                    placeholder="Ingrese la cantidad">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Ubicación</label>
-            <input type="text" class="form-control"
+            <label asp-for="Ubicacion" class="form-label">Ubicación</label>
+            <input asp-for="Ubicacion" type="text" class="form-control"
                    placeholder="Ejemplo: Almacén A">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Estado</label>
-            <select class="form-select">
+            <label asp-for="Estado" class="form-label">Estado</label>
+            <select asp-for="Estado" class="form-select">
                 <option value="">Seleccione un estado</option>
                 <option>Disponible</option>
                 <option>Dañado</option>
@@ -40,16 +36,15 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Producto ID</label>
-            <input type="number" class="form-control"
-                   placeholder="Ingrese el ID del producto">
+            <label asp-for="ProductoID" class="form-label">Producto ID</label>
+            <select asp-for="ProductoID" asp-items="ViewBag.ProductoID" class="form-select"><option value="">Seleccione un producto</option></select>
         </div>
 
-        <button type="button" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary">
             Guardar
         </button>
 
-        <a href="/Inventario/Index"
+        <a asp-action="Index"
            class="btn btn-secondary">
             Regresar
         </a>

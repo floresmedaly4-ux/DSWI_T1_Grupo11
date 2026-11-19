@@ -1,9 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
+@model Producto
 @{
     ViewData["Title"] = "Registrar Producto";
 }
@@ -11,24 +6,25 @@
 <div class="container mt-4">
     <h2>Registrar Nuevo Producto</h2>
 
-    <form>
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div class="mb-3">
-            <label class="form-label">Nombre del producto</label>
-            <input type="text" class="form-control"
+            <label asp-for="Nombre" class="form-label">Nombre del producto</label>
+            <input asp-for="Nombre" type="text" class="form-control"
                    placeholder="Ingrese el nombre del producto">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Categoría</label>
-            <input type="text" class="form-control"
+            <label asp-for="Categoria" class="form-label">Categoría</label>
+            <input asp-for="Categoria" type="text" class="form-control"
                    placeholder="Ingrese la categoría">
         </div>
 
-        <button type="button" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary">
             Guardar
         </button>
 
-        <a href="/Productos/Index"
+        <a asp-action="Index"
            class="btn btn-secondary">Regresar</a>
     </form>
 </div>
