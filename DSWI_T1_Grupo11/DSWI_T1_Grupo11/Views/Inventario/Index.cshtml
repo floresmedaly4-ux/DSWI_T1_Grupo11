@@ -1,0 +1,76 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    ViewData["Title"] = "Inventario";
+}
+
+<div class="container mt-4">
+    <h2>Gestión de Inventario</h2>
+    <p>Administración de los productos registrados en el inventario.</p>
+
+    <button class="btn btn-primary mb-3">
+        Nuevo Registro
+    </button>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Fecha de ingreso</th>
+                <th>Cantidad</th>
+                <th>Ubicación</th>
+                <th>Estado</th>
+                <th>Producto ID</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>01/04/2025</td>
+                <td>10</td>
+                <td>Almacén A</td>
+                <td>Disponible</td>
+                <td>1</td>
+                <td>
+                    <button class="btn btn-warning btn-sm">
+                        Editar
+                    </button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>02/04/2025</td>
+                <td>5</td>
+                <td>Almacén B</td>
+                <td>Disponible</td>
+                <td>2</td>
+                <td>
+                    <button class="btn btn-warning btn-sm">
+                        Editar
+                    </button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>03/04/2025</td>
+                <td>8</td>
+                <td>Almacén B</td>
+                <td>Dañado</td>
+                <td>3</td>
+                <td>
+                    <button class="btn btn-warning btn-sm">
+                        Editar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

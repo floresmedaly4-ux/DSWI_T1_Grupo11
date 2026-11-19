@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<div class="container mt-4">
+    <h2>Gestión de Productos</h2>
+    <p>Administración de los productos del inventario.</p>
+
+    <button class="btn btn-primary mb-3">
+        Nuevo Producto
+    </button>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Laptop HP</td>
+                <td>Tecnología</td>
+                <td>
+                    <button class="btn btn-warning btn-sm">
+                        Editar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
