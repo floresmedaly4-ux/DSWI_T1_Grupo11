@@ -1,0 +1,32 @@
+APORTE DE MEDALY | Pregunta 2 | DSWI_T1_Grupo11
+Este paquete se integra en el proyecto base que contiene la pregunta 1. La carpeta DSWI_T1_Grupo11 corresponde a la que contiene el .csproj. SQL va junto a la solución .slnx.
+
+1. Preparar la base
+Abre SSMS en Windows. En una instalación nueva ejecuta SQL/01_InventarioBD.sql una sola vez. Si ya tienes InventarioBD con las tablas del profesor, empieza con 02_Comprobar.sql. Ejecuta 03_Procedimientos.sql y luego 04_Prueba.sql. Este último llama a los ocho procedimientos y verifica el resultado dentro de una transacción que se revierte. Debe aparecer «Prueba correcta» en Mensajes. La prueba puede consumir números de identidad sin dejar filas.
+
+2. Integrar el código en Visual Studio
+En tu clon del repositorio, actualiza main y crea la rama medaly/base-inventario. Usa los archivos de este paquete en las rutas indicadas. Para los archivos compartidos, integra solo tus cambios.
+- Models y Data contienen las dos entidades y el contexto. Repositories y Services contienen cuatro interfaces y cuatro implementaciones.
+- En appsettings.json incorpora ConnectionStrings:ConexionSQL. Su ejemplo usa LocalDB. Si tu SSMS usa otra instancia cambia Server y conserva Database=InventarioBD. No subas credenciales.
+- En Program.cs incorpora los using de Data, Repositories, Services y EntityFrameworkCore, el AddDbContext y los cuatro AddScoped antes de builder.Build(). Si ya existen, conserva una sola copia.
+- El .csproj del ZIP original ya referencia Microsoft.EntityFrameworkCore.SqlServer y Microsoft.EntityFrameworkCore.Tools. Restaura paquetes en Visual Studio.
+- Los controladores incluidos conectan las vistas al Service. Si tu compañera ya creó controladores con esos nombres, integren el constructor y el contenido de las acciones en los suyos. Conserven los nombres de acción, nombres de vistas y rutas que usen sus formularios. Eviten dos controladores para la misma ruta.
+
+3. Ejecutar Scaffold contra tu SQL Server
+Desde la Consola del Administrador de paquetes, selecciona DSWI_T1_Grupo11 como proyecto predeterminado y de inicio. Ejecuta en una sola línea:
+
+Scaffold-DbContext "Name=ConnectionStrings:ConexionSQL" Microsoft.EntityFrameworkCore.SqlServer -Tables dbo.Productos,dbo.Inventario -OutputDir Models/Scaffold -ContextDir Data/Scaffold -Context InventarioScaffoldContext -NoOnConfiguring
+
+Las clases de ingeniería inversa quedan dentro de Models/Scaffold y Data/Scaffold. Las carpetas y el contexto distintos permiten mostrar el resultado al profesor y conservar los nombres ProductoID, DateTime? y las propiedades que usan las vistas. La aplicación utiliza Data/InventarioContext. Si ya ejecutaste ese comando, revisa los archivos existentes. Compila la solución.
+
+4. Conectar las pantallas
+ProductosController usa IProductoService. InventarioController usa IInventarioService e IProductoService.
+- Index entrega una lista de Producto o Inventario a Views/Productos/Index.cshtml o Views/Inventario/Index.cshtml. El listado de inventario trae Producto?.Nombre.
+- Create (GET) abre el formulario; Create (POST) guarda y vuelve a Index.
+- Edit (GET) busca por id; Edit (POST) actualiza. En el formulario de edición incluye el campo oculto ProductoID o InventarioID y envía el mismo id en la ruta, por ejemplo <form asp-action="Edit" asp-route-id="@Model.ProductoID" method="post">. Usa los Form Tag Helpers de MVC para generar el token antifalsificación.
+- En Crear/Editar inventario, el selector usa <select asp-for="ProductoID" asp-items="ViewBag.ProductoID"></select>. El contexto respeta los campos opcionales del script del profesor.
+- Si las vistas se llaman Crear/Editar, ajusten nombres, enlaces y formularios para coincidir. En las rutas incluidas son Create/Edit.
+- Después de integrar las vistas, inicia el proyecto y abre /Productos y /Inventario. Crea un producto, edítalo, crea un ingreso de inventario asociado y cambia su cantidad. Vuelve a ejecutar 02_Comprobar.sql para comprobar lo que guardaron las pantallas.
+
+5. GitHub
+En Cambios de Git prepara los archivos de tu aporte y los generados con Scaffold. Integra con tu compañera las acciones si ella ya cambió los controladores. Confirma desde tu cuenta, por ejemplo «Implementa acceso a inventario con EF Core, servicios y procedimientos almacenados». Publica la rama y crea un pull request hacia main. Una vez integrado, revisen el historial y entreguen el enlace del repositorio con acceso para el profesor.
